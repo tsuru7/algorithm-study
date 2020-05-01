@@ -37,23 +37,24 @@ def isStable(c1, c0):
 #    print(l0==l1)
     return l0 == l1
      
+if __name__ == '__main__':
 
-n = int(input())
-cards = input().split()
-c1 = cards.copy()
-c1ret = bubleSort(c1, n)
-print(' '.join(c1ret))
-if (isStable(c1ret, cards)):
-    print('Stable')
-else:
-    print('Not stable')
+    n = int(input())
+    cards = input().split()
+    c1 = cards.copy()
+    c1ret = bubleSort(c1, n)
+    print(' '.join(c1ret))
+    if (isStable(c1ret, cards)):
+        print('Stable')
+    else:
+        print('Not stable')
 
 #print(c1, c1ret, cards)
 
-c2 = cards.copy()
-c2ret = selectionSort(c2, n)
-print(' '.join(c2ret))
-if (isStable(c2ret, cards)):
-    print('Stable')
-else:
-    print('Not stable')
+    c2 = cards.copy()
+    c2ret = selectionSort(c2, n)
+    print(' '.join(c2ret))
+    if (isStable(c2ret, cards)):
+        print('Stable')
+    else:
+        print('Not stable')
