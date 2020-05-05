@@ -16,7 +16,12 @@ def main(n,d):
     
     return ndan
 
+def main2(n,d):
+    # 別解
+    set_d = set(d)
+    return len(set_d)
+
 if __name__=='__main__':
     n,d=readinput()
-    ans=main(n,d)
+    ans=main2(n,d)
     print(ans)
