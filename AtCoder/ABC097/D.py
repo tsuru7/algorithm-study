@@ -54,11 +54,7 @@ def main(n,m,p,pairs):
     #print(p)
     count=0
     for i in range(1,n+1):
-        for j in range(1,n+1):
-            if i==p[j]:
-                #print(i,j)
-                break
-        if uft.same(i,j):
+        if uft.same(i,p[i]):
             #p[i],p[j] = p[j], p[i]
             count+=1
     
