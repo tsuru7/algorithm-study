@@ -1,7 +1,7 @@
 def readinput():
     n=int(input())
     shogensList=[]
-    for i in range(n):
+    for _i in range(n):
         a=int(input())
         shogens=[]
         for _ in range(a):
