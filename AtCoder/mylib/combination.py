@@ -1,3 +1,5 @@
+# https://qiita.com/derodero24/items/91b6468e66923a87f39f
+# 
 from operator import mul
 from functools import reduce
 

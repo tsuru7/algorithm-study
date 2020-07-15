@@ -4,9 +4,9 @@
 MAX = (10**6)*2//3 +1  # (X+Y)/3より大きい整数 1 <= X, Y <= 10**6
 P = (10**9)+7
 
-fac=[1 in range(MAX)]
-inv=[1 in range(MAX)]
-finv=[1 in range(MAX)]
+fac=[1 for x in range(MAX)]
+inv=[1 for x in range(MAX)]
+finv=[1 for x in range(MAX)]
 
 # 拡張ユークリッドアルゴリズム
 # (d, x, y): d=ax+by を満たすd, x, yを求める
