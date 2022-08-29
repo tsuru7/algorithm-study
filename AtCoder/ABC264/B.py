@@ -1,0 +1,38 @@
+import sys
+sys.setrecursionlimit(10**6)
+INFTY = sys.maxsize
+
+def i_input():
+    return int(input())
+def m_input():
+    return map(int, input().split())
+def l_input():
+    return list(map(int, input().split()))
+DEBUG = False
+def printd(*args):
+    if DEBUG:
+        print(*args)
+
+def readinput():
+    r,c=m_input()
+    return r,c
+
+def solve(r,c):
+    r -= 7
+    c -= 7
+    r = abs(r)
+    c = abs(c)
+    if r < c:
+        r, c = c, r
+    if r % 2 == 1:
+        return 'white'
+    else:
+        return 'black'
+
+def printans(ans):
+    print(ans)
+
+if __name__=='__main__':
+    r,c=readinput()
+    ans=solve(r,c)
+    printans(ans)

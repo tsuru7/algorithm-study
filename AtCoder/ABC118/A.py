@@ -1,14 +1,14 @@
 def readinput():
-    n=int(input())
     a,b=map(int,input().split())
-    l=list(map(int,input().split()))
-    return n,a,b,l
+    return a,b
 
-def main(n,a,b,l):
-    ans=0
-    return ans
+def main(a,b):
+    if b % a == 0:
+        return a + b
+    else:
+        return b - a
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=main(n,a,b,l)
+    a,b=readinput()
+    ans=main(a,b)
     print(ans)

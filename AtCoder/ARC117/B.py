@@ -17,12 +17,16 @@ def readinput():
 def main(n,a):
     MOD = 10**9+7
     counter = Counter(a)
-    # print(counter)
-    nheight = len(list(counter.keys()))
+    heights = sorted(list(counter.keys()))
+    steps = []
+    prev = 0
+    for height in heights:
+        steps.append(height - prev)
+        prev = height
     ans = 1
-    for i in range(1, nheight+1):
-        ans = (ans * i)%MOD
-    return ans+2
+    for step in steps:
+        ans = (ans * (step+1))%MOD
+    return ans
 
 def printans(ans):
     print(ans)
