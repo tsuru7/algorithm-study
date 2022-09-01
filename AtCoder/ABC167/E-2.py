@@ -19,15 +19,23 @@ def readinput():
 
 def solve(n,m,k):
     MOD = 998244353
-    dp = [[0 for _ in range(k+1)] for _ in range(n+1)]
-    dp[1][0] = m
-    for i in range(2, n+1):
-        for j in range(min(i-1, k)+1):
-            dp[i][j] += dp[i-1][j]*(m-1)
-            if j-1 >= 0:
-                dp[i][j] += dp[i-1][j-1]
-            dp[i][j] %= MOD
-    return sum(dp[n]) % MOD
+    fact = [0 for _ in range(2*10**5+1)]
+    inv  = [0 for _ in range(2*10**5+1)]
+    fact[0] = 1
+    fact[1] = 1
+    inv[0] = 1
+    inv[1] = 1
+    for i in range(2, n):
+        fact[i] = (fact[i-1]*i) % MOD
+        inv[i] = pow(fact[i], MOD-2, MOD)
+    ans=0
+    for i in range(k+1):
+        comb = fact[n-1]*inv[i]*inv[n-1-i]
+        tmp = comb * m * pow(m-1, n-1-i, MOD)
+        tmp %= MOD
+        ans += tmp
+        ans %= MOD
+    return ans
 
 def printans(ans):
     print(ans)
