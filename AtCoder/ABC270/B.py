@@ -14,19 +14,27 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    x,y,z=m_input()
+    return x,y,z
 
-def solve(n,a,b,l):
-    ans=0
-    return ans
+def solve(x,y,z):
+    if x < 0:
+        x *= -1
+        y *= -1
+        z *= -1
+    if y > x or y < 0:
+        return x
+    if z > y:
+        return -1
+    if z < 0:
+        return -2*z + x
+    if z > 0:
+        return x
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    x,y,z=readinput()
+    ans=solve(x,y,z)
     printans(ans)

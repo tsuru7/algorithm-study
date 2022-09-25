@@ -14,17 +14,23 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    a,b=m_input()
-    return a,b
+    n,k=m_input()
+    a=l_input()
+    return n,k,a
 
-def solve(a,b):
-    ans=a | b
-    return ans
+def solve(n,k,a):
+    dp = [0 for _ in range(n+1)]
+    for i in range(1, n+1):
+        for j in range(k):
+            aj = a[j]
+            if i-aj >= 0:
+                dp[i] = max(dp[i], i-dp[i-aj])
+    return dp[n]
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    a,b=readinput()
-    ans=solve(a,b)
+    n,k,a=readinput()
+    ans=solve(n,k,a)
     printans(ans)
