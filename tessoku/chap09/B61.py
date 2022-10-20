@@ -1,7 +1,6 @@
 import sys
 sys.setrecursionlimit(10**6)
 INFTY = sys.maxsize
-from bisect import bisect_left, bisect_right
 
 def i_input():
     return int(input())
@@ -15,26 +14,27 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n,l,r=m_input()
-    x=l_input()
-    return n,l,r,x
+    n,m=m_input()
+    friends = [0 for _ in range(n+1)]
+    for _ in range(m):
+        a, b = m_input()
+        friends[a] += 1
+        friends[b] +=1
+    return n,friends
 
-def solve(n,l,r,x):
-    now = 0
-    idx_l = bisect_left(x, now+l) + 1
-    idx_r = bisect_right(x, now+r) - 1
-    now = x[idx_r]
-    count += 1
-    while idx_r < n-1:
-
-
-    ans=0
+def solve(n,friends):
+    ans = 1
+    nmax = friends[1]
+    for i in range(2, n+1):
+        if nmax < friends[i]:
+            nmax = friends[i]
+            ans = i
     return ans
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,l,r,x=readinput()
-    ans=solve(n,l,r,x)
+    n,friends=readinput()
+    ans=solve(n,friends)
     printans(ans)

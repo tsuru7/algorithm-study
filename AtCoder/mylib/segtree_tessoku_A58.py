@@ -12,7 +12,8 @@ DEBUG = False
 def printd(*args):
     if DEBUG:
         print(*args)
-
+        
+########################################################
 class SegTree:
     def __init__(self, n):
         '''
@@ -61,6 +62,8 @@ class SegTree:
 
     def print(self):
         print(self.data)
+
+#########################################################
 
 def readinput():
     n,q=m_input()
