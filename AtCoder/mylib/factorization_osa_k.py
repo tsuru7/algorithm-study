@@ -82,7 +82,7 @@ def solve(n,a):
     さらにすべての素因数の個数が1個以下であればpairwise
     '''
     maxa = max(a)
-    osa_k = Osa_k(maxa)
+    osa_k = Osa_k_Method(maxa)
     primes_count = defaultdict(int)
     pairwise = True
     setwise = True
