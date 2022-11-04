@@ -50,13 +50,12 @@ class SegTree:
         self.siz = 1<<m
         self.data = [self.identity for _ in range(2*self.siz)]
         return
-     
+
     def set(self, pos, x):
         '''
         pos: 1 始まりとしたときの値を変更する leaf の位置
         '''
         pos += self.siz - 1
-        # print(f'pos: {pos}, len(data): {len(self.data)}')
         self.data[pos] = x
         pos //= 2
         while pos > 0:
@@ -82,7 +81,6 @@ class SegTree:
 
 
     def query_(self, l, r, a, b, u):
-        # print(f'[query_] l: {l}, r: {r}, a: {a}, b: {b}, u: {u}')
         if r <= a or b <= l:
             return self.identity
         if l <= a and b <= r:
@@ -94,7 +92,6 @@ class SegTree:
 
     def print(self):
         print(self.data)
-
 #########################################################
 
 

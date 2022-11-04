@@ -17,6 +17,8 @@ def printd(*args):
 class Osa_k_Method:
     '''
     osa_k法で高速に素因数分解する(O(log(nmax)))
+    ※初期化に O(nmax*loglog(nmax))かかるので、nmaxが10**6位で
+    繰り返し素因数分解するときに特に有効
     https://osak.jp/diary/diary_201310.html#20131017
     '''
     def __init__(self, nmax):
@@ -59,9 +61,7 @@ class Osa_k_Method:
                 factDict[fact] += 1
             n //= fact
 
-        factList = []
-        for fact, order in factDict.items():
-            factList.append((fact, order))
+        factList = [(fact, order) for fact, order in factDict.items()]
         return factList
 
 #
