@@ -7,20 +7,24 @@ def solve(n):
     N以下の非負整数の個数を求める（自明なサンプル）
     '''
     l = len(n)
-    dp = [[0 for _ in range(2)] for _ in range(l+1)]
-    dp[0][1] = 1
+    dpsm = [0 for _ in range(l+1)]
+    dpeq = [0 for _ in range(l+1)]
+    dpeq[0] = 1
 
     for i in range(l):
         di = int(n[i])
         # smaller -> smaller (d: [0..9])
+        # i 桁目で smaller であれば、i+1 桁目は自由に選べる
         for d in range(10):
-            dp[i+1][0] += dp[i][0]
+            dpsm[i+1] += dpsm[i]
         # equal -> smaller (d: [0..di-1])
+        # i 桁目で equal のときは、i+1 桁目が 0..(di-1) であれば smaller
         for d in range(di):
-            dp[i+1][0] += dp[i][1]
+            dpsm[i+1] += dpeq[i]
         # equal -> equal (d: di)
-        dp[i+1][1] += dp[i][1]
-    return dp[l][0] + dp[l][1]
+        # i 桁目で equal のとき、i+1 桁目が di であれば equal
+        dpeq[i+1] += dpeq[i]
+    return dpsm[l] + dpeq[l]
 
 def printans(ans):
     print(ans)
