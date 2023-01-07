@@ -16,19 +16,25 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    n,h,w=m_input()
+    abList = [l_input() for _ in range(n)]
+    return n,h,w,abList
 
-def solve(n,a,b,l):
+def solve(n,h,w,abList):
     ans=0
-    return ans
+    for i in range(n):
+        ai, bi = abList[i]
+        ans ^= (ai-1)
+        ans ^= (bi-1)
+    if ans != 0:
+        return 'First'
+    else:
+        return 'Second'
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n,h,w,abList=readinput()
+    ans=solve(n,h,w,abList)
     printans(ans)

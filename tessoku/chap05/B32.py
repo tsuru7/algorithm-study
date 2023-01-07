@@ -16,19 +16,26 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    n,k=m_input()
+    a=l_input()
+    return n,k,a
 
-def solve(n,a,b,l):
-    ans=0
-    return ans
+def solve(n,k,a):
+    dp = [False for _ in range(n+1)]
+    a.sort()
+    for i in range(a[0], n+1):
+        for j in range(k):
+            if i-a[j] >= 0:
+                dp[i] |= not dp[i-a[j]]
+    if dp[n]:
+        return 'First'
+    else:
+        return 'Second'
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n,k,a=readinput()
+    ans=solve(n,k,a)
     printans(ans)

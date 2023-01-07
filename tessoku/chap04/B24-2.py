@@ -1,8 +1,7 @@
 import sys
 sys.setrecursionlimit(10**6)
-import resource
-resource.setrlimit(resource.RLIMIT_STACK, (1073741824//4, 1073741824//4))
 INFTY = sys.maxsize
+from bisect import bisect_left
 
 def i_input():
     return int(input())
@@ -17,18 +16,24 @@ def printd(*args):
 
 def readinput():
     n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    xyList = [l_input() for _ in range(n)]
+    return n,xyList
 
-def solve(n,a,b,l):
-    ans=0
+def solve(n,xyList):
+    dp = [INFTY for _ in range(n)]
+    xyList.sort(key=lambda x: (x[0], -x[1]))
+    ans = 0
+    for i in range(n):
+        yi = xyList[i][1]
+        idx = bisect_left(dp, yi)
+        dp[idx] = yi
+        ans = max(ans, idx+1)
     return ans
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n,xyList=readinput()
+    ans=solve(n,xyList)
     printans(ans)

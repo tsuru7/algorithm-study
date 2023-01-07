@@ -16,19 +16,27 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    n,r=m_input()
+    return n,r
 
-def solve(n,a,b,l):
-    ans=0
+def solve(n,r):
+    MOD = 10**9 + 7
+    ans=1
+    m = min(r, n-r)
+    for i in range(m):
+        bunsi = n-i
+        inv = pow(m-i, MOD-2, MOD)
+        bunbo = inv
+        ans *= bunsi
+        ans %= MOD
+        ans *= bunbo
+        ans %= MOD
     return ans
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n,r=readinput()
+    ans=solve(n,r)
     printans(ans)

@@ -14,27 +14,26 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n,x=m_input()
+    n=i_input()
     a=l_input()
-    return n,x,a
+    b=l_input()
+    return n,a,b
 
-def solve(n,x,a):
-    a.sort()
-    # a[wa] < x <= a[ac] となる ac を求める
-    wa = -1
-    ac = n
-    while ac - wa > 1:
-        wj = (ac+wa)//2
-        if a[wj] < x:
-            wa = wj
-        else:
-            ac = wj
-    return ac+1
+def solve(n,a,b):
+    dp = [INFTY for _ in range(n)]
+    dp[0] = 0
+    for i in range(1, n):
+        ai = a[i-1]
+        dp[i] = min(dp[i], dp[i-1] + ai)
+        if i-2 >= 0:
+            bi = b[i-2]
+            dp[i] = min(dp[i], dp[i-2] + bi)
+    return dp[-1]
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,x,a=readinput()
-    ans=solve(n,x,a)
+    n,a,b=readinput()
+    ans=solve(n,a,b)
     printans(ans)

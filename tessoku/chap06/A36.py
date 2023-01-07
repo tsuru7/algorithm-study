@@ -1,5 +1,7 @@
 import sys
 sys.setrecursionlimit(10**6)
+import resource
+resource.setrlimit(resource.RLIMIT_STACK, (1073741824//4, 1073741824//4))
 INFTY = sys.maxsize
 
 def i_input():
@@ -14,27 +16,21 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n,x=m_input()
-    a=l_input()
-    return n,x,a
+    n,k=m_input()
+    return n,k
 
-def solve(n,x,a):
-    a.sort()
-    # a[wa] < x <= a[ac] となる ac を求める
-    wa = -1
-    ac = n
-    while ac - wa > 1:
-        wj = (ac+wa)//2
-        if a[wj] < x:
-            wa = wj
-        else:
-            ac = wj
-    return ac+1
+def solve(n,k):
+    steps = 2*n - 2
+    if k - steps < 0:
+        return 'No'
+    if (k-steps) % 2 == 1:
+        return 'No'
+    return 'Yes'
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,x,a=readinput()
-    ans=solve(n,x,a)
+    n,k=readinput()
+    ans=solve(n,k)
     printans(ans)

@@ -14,27 +14,17 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n,x=m_input()
-    a=l_input()
-    return n,x,a
+    a,b=m_input()
+    return a,b
 
-def solve(n,x,a):
-    a.sort()
-    # a[wa] < x <= a[ac] となる ac を求める
-    wa = -1
-    ac = n
-    while ac - wa > 1:
-        wj = (ac+wa)//2
-        if a[wj] < x:
-            wa = wj
-        else:
-            ac = wj
-    return ac+1
+def solve(a,b):
+    from math import gcd
+    return gcd(a, b)
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,x,a=readinput()
-    ans=solve(n,x,a)
+    a,b=readinput()
+    ans=solve(a,b)
     printans(ans)

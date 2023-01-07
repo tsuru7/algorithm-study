@@ -14,32 +14,33 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n=i_input()
-    a=l_input()
-    q = i_input()
+    q=i_input()
     queries = [i_input() for _ in range(q)]
-    return n,a,q,queries
+    return q,queries
 
-def solve(n,a,q,queries):
-    a.sort()
+def isprime(x):
+    ans = True
+    i = 2
+    while i*i <=x:
+        if x % i == 0:
+            ans = False
+            break
+        i += 1
+    return ans
+
+def solve(q,queries):
     ans=[]
     for x in queries:
-        ac = -1
-        wa = n
-        while wa - ac > 1:
-            wj = (ac+wa)//2
-            if a[wj] < x:
-                ac = wj
-            else:
-                wa = wj
-        ans.append(ac+1)
-    
+        if isprime(x):
+            ans.append('Yes')
+        else:
+            ans.append('No')
     return ans
 
 def printans(ans):
     print(*ans, sep='\n')
 
 if __name__=='__main__':
-    n,a,q,queries=readinput()
-    ans=solve(n,a,q,queries)
+    q,queries=readinput()
+    ans=solve(q,queries)
     printans(ans)

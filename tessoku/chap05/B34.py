@@ -16,19 +16,35 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    n,x,y=m_input()
+    a=l_input()
+    return n,x,y,a
 
-def solve(n,a,b,l):
+def grundy(x):
+    x %= 5
+    if x == 0 or x == 1:
+        return 0
+    elif x == 2 or x == 3:
+        return 1
+    else:
+        return 2
+
+def solve(n,x,y,a):
+    assert x == 2
+    assert y == 3
+
     ans=0
-    return ans
+    for i in range(n):
+        ans ^= grundy(a[i])
+    if ans != 0:
+        return 'First'
+    else:
+        return 'Second'
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n,x,y,a=readinput()
+    ans=solve(n,x,y,a)
     printans(ans)

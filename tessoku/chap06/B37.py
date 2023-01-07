@@ -17,18 +17,28 @@ def printd(*args):
 
 def readinput():
     n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    return n
 
-def solve(n,a,b,l):
+def f2(k):
+    return 45 * k * 10**(k-1)
+
+def f3(k, d):
+    sumd = d*(d+1)//2
+    return sumd * f2(k-1)
+
+def solve(n):
+    keta = len(str(n))
     ans=0
+    d = n // 10**(keta-1)
+    ans += f3(keta, d-1)
+    
+
     return ans
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n=readinput()
+    ans=solve(n)
     printans(ans)

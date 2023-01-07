@@ -1,7 +1,5 @@
 import sys
 sys.setrecursionlimit(10**6)
-import resource
-resource.setrlimit(resource.RLIMIT_STACK, (1073741824//4, 1073741824//4))
 INFTY = sys.maxsize
 
 def i_input():
@@ -17,18 +15,29 @@ def printd(*args):
 
 def readinput():
     n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    return n
 
-def solve(n,a,b,l):
-    ans=0
+def isprime(x):
+    ans = True
+    i = 2
+    while i*i <= x:
+        if x % i == 0:
+            ans = False
+            break
+        i += 1
+    return ans
+
+def solve(n):
+    ans=[]
+    for i in range(2, n+1):
+        if isprime(i):
+            ans.append(i)
     return ans
 
 def printans(ans):
-    print(ans)
+    print(*ans, sep='\n')
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n=readinput()
+    ans=solve(n)
     printans(ans)

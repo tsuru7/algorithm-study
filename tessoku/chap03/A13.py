@@ -14,27 +14,24 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n,x=m_input()
+    n,k=m_input()
     a=l_input()
-    return n,x,a
+    return n,k,a
 
-def solve(n,x,a):
-    a.sort()
-    # a[wa] < x <= a[ac] となる ac を求める
-    wa = -1
-    ac = n
-    while ac - wa > 1:
-        wj = (ac+wa)//2
-        if a[wj] < x:
-            wa = wj
-        else:
-            ac = wj
-    return ac+1
+def solve(n,k,a):
+    # 右端 r を固定しながら左端 l を動かして条件をみたす(l, r)の組の数を数える
+    l = 0
+    count = 0
+    for r in range(1, n):
+        while l < r and a[r] - a[l] > k:
+            l += 1
+        count += r - l
+    return count
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,x,a=readinput()
-    ans=solve(n,x,a)
+    n,k,a=readinput()
+    ans=solve(n,k,a)
     printans(ans)

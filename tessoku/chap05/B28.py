@@ -14,27 +14,23 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n,x=m_input()
-    a=l_input()
-    return n,x,a
+    n=i_input()
+    return n
 
-def solve(n,x,a):
-    a.sort()
-    # a[wa] < x <= a[ac] となる ac を求める
-    wa = -1
-    ac = n
-    while ac - wa > 1:
-        wj = (ac+wa)//2
-        if a[wj] < x:
-            wa = wj
-        else:
-            ac = wj
-    return ac+1
+def solve(n):
+    MOD = 10**9 + 7
+    f = [0 for _ in range(n+1)]
+    f[0] = 0
+    f[1] = 1
+    f[2] = 1
+    for i in range(3, n+1):
+        f[i] = (f[i-1] + f[i-2]) % MOD
+    return f[n]
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,x,a=readinput()
-    ans=solve(n,x,a)
+    n=readinput()
+    ans=solve(n)
     printans(ans)
