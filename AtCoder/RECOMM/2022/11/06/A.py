@@ -1,11 +1,6 @@
 import sys
 sys.setrecursionlimit(10**6)
-import resource
-resource.setrlimit(resource.RLIMIT_STACK, (1073741824//4, 1073741824//4))
-
 INFTY = sys.maxsize
-# MOD = 10**9+7
-MOD = 998244353
 
 def i_input():
     return int(input())
@@ -20,18 +15,18 @@ def printd(*args):
 
 def readinput():
     n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    return n
 
-def solve(n,a,b,l):
+def solve(n):
     ans=0
+    for i in range(1, n):
+        ans += n/(n-i)
     return ans
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n=readinput()
+    ans=solve(n)
     printans(ans)

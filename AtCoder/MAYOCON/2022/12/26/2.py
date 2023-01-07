@@ -20,18 +20,23 @@ def printd(*args):
 
 def readinput():
     n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    a=l_input()
+    return n,a
 
-def solve(n,a,b,l):
+def solve(n,a):
+    count = [0 for _ in range(200)]
+    for i in range(n):
+        j = a[i] % 200
+        count[j] += 1
     ans=0
+    for i in range(200):
+        ans += count[i]*(count[i]-1)//2
     return ans
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    n,a=readinput()
+    ans=solve(n,a)
     printans(ans)

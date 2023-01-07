@@ -19,19 +19,18 @@ def printd(*args):
         print(*args)
 
 def readinput():
-    n=i_input()
-    a,b=m_input()
-    l=l_input()
-    return n,a,b,l
+    s = input()
+    return s
 
-def solve(n,a,b,l):
-    ans=0
+def solve(s):
+    lens = len(s)
+    ans = s[0] + str(lens-2) + s[-1]
     return ans
 
 def printans(ans):
     print(ans)
 
 if __name__=='__main__':
-    n,a,b,l=readinput()
-    ans=solve(n,a,b,l)
+    s=readinput()
+    ans=solve(s)
     printans(ans)
