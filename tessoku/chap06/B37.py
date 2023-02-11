@@ -19,21 +19,18 @@ def readinput():
     n=i_input()
     return n
 
-def f2(k):
-    return 45 * k * 10**(k-1)
-
-def f3(k, d):
-    sumd = d*(d+1)//2
-    return sumd * f2(k-1)
-
 def solve(n):
-    keta = len(str(n))
-    ans=0
-    d = n // 10**(keta-1)
-    ans += f3(keta, d-1)
-    
-
-    return ans
+    n = str(n)
+    keta = len(n)
+    dp_smaller = [0 for _ in range(keta+1)]
+    dp_onhold = [0 for _ in range(keta+1)]
+    for i in range(keta):
+        di = int(n[i])
+        Di = int(n[:i]) if i > 0 else 0
+        dp_smaller[i+1] += dp_smaller[i]*10 + Di*45
+        dp_smaller[i+1] += dp_onhold[i]*di + (di-1)*di//2
+        dp_onhold[i+1] += dp_onhold[i] + di
+    return dp_smaller[keta] + dp_onhold[keta]
 
 def printans(ans):
     print(ans)

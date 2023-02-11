@@ -22,4 +22,15 @@ class Eratosthenes:
     
     def isPrime(self, x):
         return self.primes[x]
+    
+    def getPrimes(self):
+        return self.primes
+
+    def getPrimeList(self):
+        primeList = []
+        for i, flg in enumerate(self.primes):
+            if flg:
+                primeList.append(i)
+        return primeList
+
 
